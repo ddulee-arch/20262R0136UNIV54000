@@ -1,0 +1,227 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  background: #f7f1e5;
+  color: #5f574d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 280px;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f1e5;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+}
+
+button:focus-visible {
+  outline: 3px solid #5b8c85;
+  outline-offset: 3px;
+}
+
+.game {
+  width: min(calc(100% - 28px), 440px);
+  padding: 28px 0;
+}
+
+.game-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 0;
+  color: #5a5147;
+  font-size: clamp(3.3rem, 18vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+}
+
+.game-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.score-box {
+  min-width: 88px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #9b8f80;
+  color: #fffaf0;
+  text-align: center;
+}
+
+.score-box span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.score-box strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 1.35rem;
+}
+
+.new-game-button,
+.message-actions button {
+  padding: 10px 13px;
+  border-radius: 8px;
+  background: #776b5d;
+  color: #fffaf0;
+  font-weight: 700;
+}
+
+.board-wrap {
+  position: relative;
+}
+
+.board {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: clamp(7px, 2.4vw, 11px);
+  padding: clamp(7px, 2.4vw, 11px);
+  border-radius: 12px;
+  background: #a99d8f;
+}
+
+.tile {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #c7bcad;
+  color: #5f574d;
+  font-size: clamp(1.35rem, 8vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.tile--small {
+  font-size: clamp(1rem, 6vw, 1.75rem);
+}
+
+.tile-2 { background: #eee6d8; }
+.tile-4 { background: #e8dcc5; }
+.tile-8 { background: #e8ad6f; color: #fffaf0; }
+.tile-16 { background: #df895c; color: #fffaf0; }
+.tile-32 { background: #d96f55; color: #fffaf0; }
+.tile-64 { background: #c95443; color: #fffaf0; }
+.tile-128 { background: #d5b34f; color: #fffaf0; }
+.tile-256 { background: #caa33e; color: #fffaf0; }
+.tile-512 { background: #b88d2f; color: #fffaf0; }
+.tile-1024 { background: #92723e; color: #fffaf0; }
+.tile-2048,
+.tile-high { background: #5b8c85; color: #fffaf0; }
+
+.message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 12px;
+  background: rgba(247, 241, 229, 0.9);
+  text-align: center;
+}
+
+.message[hidden] {
+  display: none;
+}
+
+.message-card {
+  width: min(100%, 300px);
+}
+
+.message h2 {
+  margin: 0 0 8px;
+  color: #5a5147;
+  font-size: 2rem;
+}
+
+.message p {
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.message-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.direction-controls {
+  width: min(230px, 70vw);
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.direction-button {
+  aspect-ratio: 1.35;
+  border: 2px solid #a99d8f;
+  border-radius: 10px;
+  background: #eee6d8;
+  color: #5a5147;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.direction-button:active {
+  background: #ded1bf;
+}
+
+.direction-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.direction-up { grid-column: 2; }
+.direction-left { grid-column: 1; grid-row: 2; }
+.direction-down { grid-column: 2; grid-row: 2; }
+.direction-right { grid-column: 3; grid-row: 2; }
+
+.instructions {
+  margin: 18px auto 0;
+  max-width: 390px;
+  color: #766d62;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media (max-width: 360px) {
+  .game-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .game-actions > * {
+    flex: 1;
+  }
+}
